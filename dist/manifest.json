@@ -1,0 +1,24 @@
+{
+  "name": "PlanQuit",
+  "version": "1.0",
+  "description": "Make a plan to help yourself stop wasting time on the Internet",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/content.js"]
+    }
+  ],
+  "permissions": [
+      "activeTab",
+      "storage",
+      "tabs"
+  ]
+}
