@@ -18,7 +18,8 @@
   ],
   "permissions": [
       "activeTab",
-      "storage",
-      "tabs"
+      "tabs",
+      "alarms",
+      "idle"
   ]
 }
