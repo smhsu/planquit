@@ -13,8 +13,8 @@ function setBlacklist(blacklist: string[]) {
 }
 
 /**
- * Adds a domain to the blacklist.  Does nothing and returns `false` if the domain already exists.  Otherwise, returns
- * `true`.
+ * Adds a domain to the blacklist.  Does nothing and returns `false` if the domain already is on the list.  Otherwise,
+ * returns `true`.
  * 
  * @param {string} domain - the domain to add to the site blacklist
  * @return {boolean} whether the domain was added
@@ -32,7 +32,7 @@ export function addSiteToBlacklist(domain: string): boolean {
 }
 
 /**
- * Removes a domain from the blacklist.  Does nothing and returns `false` if the domain doesn't exist.  Otherwise,
+ * Removes a domain from the blacklist.  Does nothing and returns `false` if the domain wasn't on the list.  Otherwise,
  * returns `true`.
  * 
  * @param {string} domain - the domain to remove from the site blacklist
@@ -48,4 +48,11 @@ export function removeSiteFromBlacklist(domain: string): boolean {
     } else {
         return false;
     }
+}
+
+/**
+ * Removes all items from the blacklist.
+ */
+export function clearBlacklist() {
+    window.localStorage.removeItem(BLACKLIST_STORAGE_KEY);
 }
