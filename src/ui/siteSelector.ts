@@ -1,4 +1,4 @@
-const SITES_STORAGE_KEY = "SITES_TO_TRACK";
+import { getBlacklist, addSiteToBlacklist, removeSiteFromBlacklist } from "../app/SiteBlacklist";
 
 /**
  * Renders the site selector UI in a specified HTML element.
@@ -10,4 +10,7 @@ function renderSiteSelector(element: HTMLElement) {
     // use the information to render a list of sites currently blocked
     // append another <input type="text">
     // etc
+    getBlacklist()
+    addSiteToBlacklist("my site")
+    removeSiteFromBlacklist("my site")
 }

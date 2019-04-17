@@ -1,4 +1,4 @@
-const PLAN_STORAGE_KEY = "PLAN";
+import { getPlan, setPlan } from "../app/QuitPlan";
 
 /**
  * Renders the plan editor UI in a specified HTML element.
@@ -8,4 +8,6 @@ const PLAN_STORAGE_KEY = "PLAN";
 function renderPlanEditor(element: HTMLElement) {
     // read plan from storage, it will be of type QuitPlan
     // render UI to read and edit.
+    const plan = getPlan();
+    setPlan(plan);
 }
