@@ -26,3 +26,7 @@ export function getPlan(): QuitPlan {
 export function setPlan(plan: QuitPlan) {
     window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(plan));
 }
+
+export function clearPlan() {
+    window.localStorage.removeItem(PLAN_STORAGE_KEY);
+}
