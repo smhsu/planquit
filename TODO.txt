@@ -1,0 +1,11 @@
+Site selector
+    localStorage key name = "SITES_TO_TRACK"
+    Whenever someone clicks X, delete one Site
+    Whenever someone types a domain and types enter, add one site
+    Of course, the interface should stay in sync with what is stored at SITES_TO_TRACK
+Plan interface
+    
+Time selector
+Block screen
+Visualization
+
