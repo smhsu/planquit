@@ -11,9 +11,13 @@ export function renderSiteSelector(element: HTMLElement) {
     // append another <input type="text">
     // etc
     
-    getBlacklist()
-    addSiteToBlacklist("my site")
-    removeSiteFromBlacklist("my site")
+    addSiteToBlacklist("my site");
+    const blacklistSites = getBlacklist();
+    console.log(blacklistSites);
+    // render BlackListSites
+    
 
-    element.innerText = 'test';
+    //removeSiteFromBlacklist("my site")
+
+    //element.innerText = 'test';
 }
