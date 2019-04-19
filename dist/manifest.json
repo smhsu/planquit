@@ -21,5 +21,8 @@
       "tabs",
       "alarms",
       "idle"
+  ],
+  "web_accessible_resources": [
+    "blocked.html"
   ]
 }
