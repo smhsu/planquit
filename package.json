@@ -12,7 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/chrome": "0.0.75",
+    "@types/psl": "^1.1.0",
     "css-loader": "^1.0.1",
+    "psl": "^1.1.31",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.1",
     "typescript": "^3.1.6",

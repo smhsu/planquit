@@ -1,4 +1,4 @@
-const DOMAIN_REGEX = /^(\w+:\/\/[^\/]+).*$/;
+import * as domainParser from 'psl';
 const LOG_KEY = "sites";
 
 export interface SiteVisit {
@@ -20,21 +20,6 @@ export class SiteLog {
         this._startTime = Date.now();
         this._currentDomain = null;
     }
-
-    /**
-     * Returns just the domain from the url.  Includes the protocol.
-     * 
-     * @example chrome://extensions/some/other?blah=ffdf -> chrome://extensions
-     * @param {string} url - a URL, including the protocol.
-     * @return {string} the domain name, including protocol, but not paths.
-     */
-    getDomainFromUrl(url: string) {
-        var match = url.match(DOMAIN_REGEX);
-        if (match) {
-          return match[1];
-        }
-        return null;
-    };
 
     getData(): SiteVisit[] {
         const data = window.localStorage.getItem(LOG_KEY);
@@ -82,7 +67,7 @@ export class SiteLog {
             this._currentDomain = null;
             this._startTime = null;
         } else {
-            this._currentDomain = this.getDomainFromUrl(url);
+            this._currentDomain = domainParser.get(url);
             this._startTime = Date.now();
         }
     }
