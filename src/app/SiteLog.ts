@@ -1,4 +1,4 @@
-const DOMAIN_REGEX = /^(\w+:\/\/[^\/]+).*$/;
+import * as parseUrl from 'url-parse';
 const LOG_KEY = "sites";
 
 export interface SiteVisit {
@@ -18,23 +18,8 @@ export class SiteLog {
 
     constructor() {
         this._startTime = Date.now();
-        this._currentDomain = null;
+        this._currentDomain = "";
     }
-
-    /**
-     * Returns just the domain from the url.  Includes the protocol.
-     * 
-     * @example chrome://extensions/some/other?blah=ffdf -> chrome://extensions
-     * @param {string} url - a URL, including the protocol.
-     * @return {string} the domain name, including protocol, but not paths.
-     */
-    getDomainFromUrl(url: string) {
-        var match = url.match(DOMAIN_REGEX);
-        if (match) {
-          return match[1];
-        }
-        return null;
-    };
 
     getData(): SiteVisit[] {
         const data = window.localStorage.getItem(LOG_KEY);
@@ -47,7 +32,7 @@ export class SiteLog {
     }
 
     addItemToLog() {
-        if (this._currentDomain === null) {
+        if (!this._currentDomain || this._startTime === Number.NEGATIVE_INFINITY) {
             return;
         }
 
@@ -73,16 +58,16 @@ export class SiteLog {
      * This method should be called whenever there is a potential focus change.  Provide url = null if Chrome is out of
      * focus.
      * 
-     * @param {string} url - the url that was focused, or null if focus was lost.
+     * @param {string | null | undefined} url - the url that was focused, or null/undefined if focus was lost.
      */
-    setCurrentFocus(url: string) {
+    setCurrentFocus(url: string | null | undefined) {
         this.addItemToLog();
 
-        if (url == null) {
-            this._currentDomain = null;
-            this._startTime = null;
+        if (!url) {
+            this._currentDomain = "";
+            this._startTime = Number.NEGATIVE_INFINITY;
         } else {
-            this._currentDomain = this.getDomainFromUrl(url);
+            this._currentDomain = parseUrl(url).hostname;
             this._startTime = Date.now();
         }
     }

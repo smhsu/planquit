@@ -10,16 +10,12 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/content.js"]
-    }
-  ],
   "permissions": [
-      "activeTab",
       "tabs",
       "alarms",
       "idle"
+  ],
+  "web_accessible_resources": [
+    "blocked.html"
   ]
 }

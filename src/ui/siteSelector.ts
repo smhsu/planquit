@@ -1,4 +1,4 @@
-import { getBlacklist, addSiteToBlacklist, removeSiteFromBlacklist } from "../app/SiteBlacklist";
+import { getBlacklist, addSiteToBlacklist, removeSiteFromBlacklist } from "../app/siteBlacklist";
 
 /**
  * Renders the site selector UI in a specified HTML element.
