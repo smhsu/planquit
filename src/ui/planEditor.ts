@@ -17,8 +17,7 @@ export function renderPlanEditor(element: HTMLElement) {
     var tabsElement = document.createElement("div");
     var tabsSlider = <HTMLInputElement>document.createElement("input");
     tabsSlider.setAttribute("type", "range");
-    //tabsSlider.value = "" + plan.tabReductionGoal;
-    tabsSlider.value = "33";
+    tabsSlider.value = "" + plan.tabReductionGoal;
     tabsElement.innerText = "Tabs to reduce\n";
     tabsElement.appendChild(tabsSlider);
     element.appendChild(tabsElement);
@@ -27,9 +26,7 @@ export function renderPlanEditor(element: HTMLElement) {
     var timeElement = document.createElement("div");
     var timeSlider = <HTMLInputElement>document.createElement("input");
     timeSlider.setAttribute("type", "range");
-    //timeSlider.value = "" + plan.minutesReductionGoal;
-    timeSlider.value = "22";
-    console.log(timeSlider.value);
+    timeSlider.value = "" + plan.minutesReductionGoal;
     timeElement.innerText = "\nTime to reduce\n";
     timeElement.appendChild(timeSlider);
     element.appendChild(timeElement);
