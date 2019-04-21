@@ -1,4 +1,4 @@
-import * as domainParser from 'psl';
+import * as parseUrl from 'url-parse';
 const LOG_KEY = "sites";
 
 export interface SiteVisit {
@@ -18,7 +18,7 @@ export class SiteLog {
 
     constructor() {
         this._startTime = Date.now();
-        this._currentDomain = null;
+        this._currentDomain = "";
     }
 
     getData(): SiteVisit[] {
@@ -32,7 +32,7 @@ export class SiteLog {
     }
 
     addItemToLog() {
-        if (this._currentDomain === null) {
+        if (!this._currentDomain || this._startTime === Number.NEGATIVE_INFINITY) {
             return;
         }
 
@@ -58,16 +58,16 @@ export class SiteLog {
      * This method should be called whenever there is a potential focus change.  Provide url = null if Chrome is out of
      * focus.
      * 
-     * @param {string} url - the url that was focused, or null if focus was lost.
+     * @param {string | null | undefined} url - the url that was focused, or null/undefined if focus was lost.
      */
-    setCurrentFocus(url: string) {
+    setCurrentFocus(url: string | null | undefined) {
         this.addItemToLog();
 
-        if (url == null) {
-            this._currentDomain = null;
-            this._startTime = null;
+        if (!url) {
+            this._currentDomain = "";
+            this._startTime = Number.NEGATIVE_INFINITY;
         } else {
-            this._currentDomain = domainParser.get(url);
+            this._currentDomain = parseUrl(url).hostname;
             this._startTime = Date.now();
         }
     }

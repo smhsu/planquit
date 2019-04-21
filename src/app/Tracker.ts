@@ -38,10 +38,10 @@ export class Tracker {
                 // for the lastFocusedWindow, it's possible for that window to go out of focus quickly. If we don't do
                 // this, we risk counting time towards a tab while the user is outside of
                 // Chrome altogether.
-                var url = tabs[0].url;
+                let url = tabs[0].url;
                 chrome.windows.get(tabs[0].windowId, window => {
                     if (!window.focused) {
-                        url = null;
+                        url = undefined;
                     }
                     this.siteLog.setCurrentFocus(url);
                 });
@@ -63,7 +63,7 @@ export class Tracker {
         this.updateTimeWithCurrentTab();
     }
 
-    handleIdleStateChanged(idleState) {
+    handleIdleStateChanged(idleState: string) {
         if (idleState == "active") {
             this.isIdle = false;
             this.updateTimeWithCurrentTab();

@@ -13,13 +13,13 @@
   "devDependencies": {
     "@types/chrome": "0.0.75",
     "@types/jquery": "^3.3.29",
-    "@types/psl": "^1.1.0",
+    "@types/url-parse": "^1.4.3",
     "css-loader": "^1.0.1",
     "jquery": "^3.4.0",
-    "psl": "^1.1.31",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.1",
     "typescript": "^3.1.6",
+    "url-parse": "^1.4.6",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   },

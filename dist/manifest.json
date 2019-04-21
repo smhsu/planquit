@@ -10,13 +10,6 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "run_at": "document_start",
-      "js": ["js/content.js"]
-    }
-  ],
   "permissions": [
       "tabs",
       "alarms",
