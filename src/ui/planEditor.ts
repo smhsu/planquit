@@ -15,7 +15,7 @@ export function renderPlanEditor(element: HTMLElement) {
     element.innerHTML = "<br><strong>Edit your plan: <br><br>";
 
     var reduceInstruction = document.createElement("div");
-    reduceInstruction.innerHTML = "I want to reduce this amount: \n";
+    reduceInstruction.innerHTML = "I want to reduce going to blacklist sites this amount: \n";
     element.appendChild(reduceInstruction);
     
     var tabsElement = document.createElement("div");
@@ -41,21 +41,21 @@ export function renderPlanEditor(element: HTMLElement) {
     var whyReason = document.createElement("div");
     var whyReasonInput = <HTMLInputElement>document.createElement("input");
     whyReasonInput.value = plan.whyReason;
-    whyReason.innerText = "\nWhy do you want to quit?\n";
+    whyReason.innerText = "\nWhy do you want to use these sites less?\n";
     whyReason.appendChild(whyReasonInput);
     element.appendChild(whyReason);
 
     var badEffects = document.createElement("div");
     var badEffectsInput = <HTMLInputElement>document.createElement("input");
     badEffectsInput.value = plan.badEffects;
-    badEffects.innerText = "\nBad Effects?\n";
+    badEffects.innerText = "\nWhat are the negative effects of using these sites too much?\n";
     badEffects.appendChild(badEffectsInput);
     element.appendChild(badEffects);
 
     var resistUrge = document.createElement("div");
     var resistUrgeInput = <HTMLInputElement>document.createElement("input");
     resistUrgeInput.value = plan.resistUrgePlan;
-    resistUrge.innerText = "\nYour plan to resist urge?\n";
+    resistUrge.innerText = "\nWhen I encounter an urge, I will do these things to help me resist:\n";
     resistUrge.appendChild(resistUrgeInput);
     element.appendChild(resistUrge);
 

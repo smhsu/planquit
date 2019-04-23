@@ -2,6 +2,7 @@ import "../styles/popup.css";
 import { SiteLog } from "../app/SiteLog";
 import { renderSiteSelector } from "./siteSelector";
 import { renderPlanEditor } from "./planEditor";
+import { renderConfigScreen } from "./configScreen";
 
 const log = new SiteLog();
 console.log(log.getData());
@@ -14,6 +15,9 @@ document.body.append(editSitesButton);
 var editPlanButton = <HTMLButtonElement>document.createElement("button");
 editPlanButton.textContent = "Edit Plan";
 document.body.append(editPlanButton);
+var editConfigButton = <HTMLButtonElement>document.createElement("button");
+editConfigButton.textContent = "Edit Config";
+document.body.append(editConfigButton);
 
 var child = document.createElement("div");
 document.body.append(child);
@@ -25,6 +29,10 @@ editSitesButton.onclick = function() {
 editPlanButton.onclick = function() {
     renderPlanEditor(child);
 }
+editConfigButton.onclick = function() {
+    renderConfigScreen(child);
+}
+
 
 //renderSiteSelector(document.body);
 //renderPlanEditor(document.body);
