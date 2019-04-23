@@ -12,13 +12,17 @@ export function renderPlanEditor(element: HTMLElement) {
     setPlan(plan);
     console.log(plan);
 
-    element.innerHTML = "Edit your plan: <br><br>";
+    element.innerHTML = "<strong>Edit your plan: <br><br>";
+
+    var reduceInstruction = document.createElement("div");
+    reduceInstruction.innerHTML = "I want to reduce this amount: \n";
+    element.appendChild(reduceInstruction);
     
     var tabsElement = document.createElement("div");
     var tabsSlider = <HTMLInputElement>document.createElement("input");
     tabsSlider.setAttribute("type", "range");
     tabsSlider.value = "" + plan.tabReductionGoal;
-    tabsElement.innerText = "Tabs to reduce\n";
+    tabsElement.innerText = "Tabs / Day: ";
     tabsElement.appendChild(tabsSlider);
     element.appendChild(tabsElement);
 
@@ -27,7 +31,7 @@ export function renderPlanEditor(element: HTMLElement) {
     var timeSlider = <HTMLInputElement>document.createElement("input");
     timeSlider.setAttribute("type", "range");
     timeSlider.value = "" + plan.minutesReductionGoal;
-    timeElement.innerText = "\nTime to reduce\n";
+    timeElement.innerText = "Time / Day: ";
     timeElement.appendChild(timeSlider);
     element.appendChild(timeElement);
 
