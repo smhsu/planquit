@@ -7,7 +7,7 @@
  */
 
  export function renderConfigScreen(element: HTMLElement) {
-     element.innerHTML = '<strong><br>When do you want active discouragement?</strong><br>We will put up a warning screen when you visit a site that you want to visit less. <br><br>';
+     element.innerHTML = '<br><strong>When do you want active discouragement?</strong><br>We will put up a warning screen when you visit a site that you want to visit less. <br><br>';
     
      var form = document.createElement("FORM");
      element.appendChild(form);

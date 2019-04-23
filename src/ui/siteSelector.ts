@@ -20,7 +20,8 @@ export function renderSiteSelector(element: HTMLElement) {
         var button = <HTMLButtonElement>document.createElement('button');
         button.textContent = "Remove";
         var siteString = <HTMLElement>document.createElement("text");
-        siteString.innerText = " " + site + "\n\n";
+        siteString.setAttribute("class", "url");
+        siteString.innerText = "" + site + "\n\n";
 
         button.onclick = function () {
             removeSiteFromBlacklist(site);

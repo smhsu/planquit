@@ -2,3 +2,8 @@ body {
     min-width: 400px;
     min-height: 400px;
 }
+
+.url {
+    text-decoration: underline;
+    color: blue;
+}
