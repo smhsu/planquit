@@ -6,7 +6,7 @@ import { renderPlanEditor } from "./planEditor";
 const log = new SiteLog();
 console.log(log.getData());
 
-document.body.innerText = "Edit your sites and set your plan\n";
+document.body.innerHTML = "<strong>Edit your sites and set your plan<br>";
 
 var editSitesButton = <HTMLButtonElement>document.createElement("button");
 editSitesButton.textContent = "Edit Sites";
