@@ -1,4 +1,5 @@
 import * as parseUrl from 'url-parse';
+import { searchBlacklist } from './siteBlacklist';
 
 const LOG_KEY = "sites";
 const MIN_VISIT_LENGTH_TO_LOG = 2000; // Milliseconds
@@ -17,11 +18,11 @@ export interface SiteVisit {
  */
 export class SiteLog {
     private _startTime: number;
-    private _currentDomain: string;
+    private _currentSite: string;
 
     constructor() {
         this._startTime = Date.now();
-        this._currentDomain = "";
+        this._currentSite = "";
     }
 
     getData(): SiteVisit[] {
@@ -35,7 +36,10 @@ export class SiteLog {
     }
 
     addItemToLog() {
-        if (!this._currentDomain || this._startTime === Number.NEGATIVE_INFINITY) {
+        if (!this._currentSite ||
+            this._startTime === Number.NEGATIVE_INFINITY ||
+            searchBlacklist(this._currentSite, true) === -1 // Site not on the blacklist
+        ) {
             return;
         }
 
@@ -47,7 +51,7 @@ export class SiteLog {
 
         const log = this.getData();
         const lastItem = log[log.length - 1];
-        const newItem: SiteVisit = {domain: this._currentDomain, startTime: this._startTime, endTime: endTime};
+        const newItem: SiteVisit = {domain: this._currentSite, startTime: this._startTime, endTime: endTime};
 
         if (lastItem && lastItem.domain === newItem.domain) {
             lastItem.endTime = newItem.endTime;
@@ -67,10 +71,11 @@ export class SiteLog {
         this.addItemToLog();
 
         if (!url) {
-            this._currentDomain = "";
+            this._currentSite = "";
             this._startTime = Number.NEGATIVE_INFINITY;
         } else {
-            this._currentDomain = parseUrl(url).hostname;
+            const parsed = parseUrl(url);
+            this._currentSite = parsed.hostname + parsed.pathname;
             this._startTime = Date.now();
         }
     }

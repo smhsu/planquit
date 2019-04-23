@@ -1,3 +1,5 @@
+import { OpenInterval } from "./OpenInterval";
+
 const BLOCK_EFFECTIVENESS_KEY = "ignoreStats";
 
 /**
@@ -27,4 +29,16 @@ export function logBlockIgnored(url: string, reason: string) {
     const stats = getBlockEffectiveness();
     stats.ignored.push({url, reason, time: Date.now()});
     setBlockEffectiveness(stats);
+}
+
+export function queryBlockStatsByTime(timeRange?: OpenInterval) {
+    const stats = getBlockEffectiveness();
+    if (!timeRange) {
+        return stats;
+    }
+
+    return {
+        success: stats.success.filter(entry => timeRange.start <= entry.time && entry.time < timeRange.end),
+        ignored: stats.ignored.filter(entry => timeRange.start <= entry.time && entry.time < timeRange.end)
+    };
 }
