@@ -1,4 +1,4 @@
-const BLACKLIST_STORAGE_KEY = "SITE_BLACKLIST";
+const BLACKLIST_STORAGE_KEY = "siteBlacklist";
 
 interface BlacklistEntry {
     url: string;

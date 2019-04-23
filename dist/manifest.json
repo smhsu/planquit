@@ -16,6 +16,6 @@
       "idle"
   ],
   "web_accessible_resources": [
-    "blocked.html"
+    "blockPage.html"
   ]
 }

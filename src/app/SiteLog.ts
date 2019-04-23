@@ -1,5 +1,8 @@
 import * as parseUrl from 'url-parse';
+
 const LOG_KEY = "sites";
+const MIN_VISIT_LENGTH_TO_LOG = 2000; // Milliseconds
+const MAX_VISIT_LENGTH_TO_LOG = 5 // Minutes
 
 export interface SiteVisit {
     domain: string;
@@ -38,7 +41,7 @@ export class SiteLog {
 
         const endTime = Date.now();
         const delta = endTime - this._startTime;
-        if (delta/1000/60 > 2) { // Duration too long; ignored.  Ignore very short visits too?
+        if (delta < MIN_VISIT_LENGTH_TO_LOG || delta/1000/60 > MAX_VISIT_LENGTH_TO_LOG) {
             return;
         }
 

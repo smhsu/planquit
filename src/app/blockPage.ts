@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import * as parseUrl from 'url-parse';
 import { getPlan } from './QuitPlan';
 import { whitelistEntryUntil, searchBlacklist } from './siteBlacklist';
+import { logBlockIgnored, logBlockEffective } from './blockEffectiveness';
 
 const TIME_UNTIL_SKIP_ALLOWED = 5; // Seconds
 const WHITELIST_TIME = 60 * 10 // Seconds
@@ -21,6 +22,9 @@ function getRandomElement<T>(list: T[]): T {
 // Fill in the site that was blocked
 const blockedUrlEncoded = window.location.href.split("?domain=")[1];
 const blockedUrl = decodeURIComponent(blockedUrlEncoded);
+const parsedBlockedUrl = parseUrl(blockedUrl);
+const blockedHostPlusPath = parsedBlockedUrl.hostname + parsedBlockedUrl.pathname;
+let blockIgnored = false;
 $("#blocked-site").text(blockedUrl);
 
 // Fill in the block reason
@@ -69,11 +73,18 @@ function handleReasonChanged() {
 }
 
 function ignoreBlock() {
-    const parsedUrl = parseUrl(blockedUrl);
-    const urlToSearch = parsedUrl.hostname + parsedUrl.pathname;
-    const blockedIndex = searchBlacklist(urlToSearch, true, true);
+    const blockedIndex = searchBlacklist(blockedHostPlusPath, true, true);
     if (blockedIndex !== -1) {
         whitelistEntryUntil(blockedIndex, Date.now() + WHITELIST_TIME * 1000);
+        const reason = (document.getElementById("ignore-reason") as HTMLTextAreaElement).value;
+        logBlockIgnored(blockedHostPlusPath, reason);
     }
+    blockIgnored = true;
     window.location.replace(blockedUrl);
 }
+
+window.addEventListener("beforeunload", () => {
+    if (!blockIgnored) {
+        logBlockEffective(blockedHostPlusPath);
+    }
+});

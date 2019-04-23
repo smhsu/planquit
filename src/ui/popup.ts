@@ -6,5 +6,5 @@ import { renderPlanEditor } from "./planEditor";
 const log = new SiteLog();
 console.log(log.getData());
 
-//renderSiteSelector(document.body);
-renderPlanEditor(document.body);
+renderSiteSelector(document.body);
+//renderPlanEditor(document.body);
