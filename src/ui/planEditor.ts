@@ -12,7 +12,7 @@ export function renderPlanEditor(element: HTMLElement) {
     setPlan(plan);
     console.log(plan);
 
-    element.innerHTML = "<strong>Edit your plan: <br><br>";
+    element.innerHTML = "<br><strong>Edit your plan: <br><br>";
 
     var reduceInstruction = document.createElement("div");
     reduceInstruction.innerHTML = "I want to reduce this amount: \n";

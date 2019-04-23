@@ -12,7 +12,7 @@ export function renderSiteSelector(element: HTMLElement) {
     // etc
     
     // addSiteToBlacklist("my site");
-    element.innerHTML = "Enter the sites you want to visit less. <br><br> We will track your usage for these sites. <br><br>";
+    element.innerHTML = "<br><strong>Enter the sites you want to visit less. </strong><br><br> We will track your usage for these sites. <br><br>";
     var blacklistSites = getBlacklist();
     
     for (let site of blacklistSites) {
