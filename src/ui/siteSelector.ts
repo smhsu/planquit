@@ -12,14 +12,14 @@ export function renderSiteSelector(element: HTMLElement) {
     // etc
     
     // addSiteToBlacklist("my site");
-    element.innerHTML = "Edit the sites you want to track <br><br>";
+    element.innerHTML = "<br><strong>Enter the sites you want to visit less. </strong><br><br> We will track your usage for these sites. <br><br>";
     var blacklistSites = getBlacklist();
     
     for (let site of blacklistSites) {
 
         var button = <HTMLButtonElement>document.createElement('button');
         button.textContent = "Remove";
-        var siteString = <HTMLElement>document.createElement("site");
+        var siteString = <HTMLElement>document.createElement("text");
         siteString.innerText = " " + site + "\n\n";
 
         button.onclick = function () {

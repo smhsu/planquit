@@ -12,14 +12,17 @@ export function renderPlanEditor(element: HTMLElement) {
     setPlan(plan);
     console.log(plan);
 
-    element.innerHTML = "Edit your plan: <br><br>";
+    element.innerHTML = "<br><strong>Edit your plan: <br><br>";
+
+    var reduceInstruction = document.createElement("div");
+    reduceInstruction.innerHTML = "I want to reduce going to blacklist sites this amount: \n";
+    element.appendChild(reduceInstruction);
     
     var tabsElement = document.createElement("div");
     var tabsSlider = <HTMLInputElement>document.createElement("input");
     tabsSlider.setAttribute("type", "range");
-    //tabsSlider.value = "" + plan.tabReductionGoal;
-    tabsSlider.value = "33";
-    tabsElement.innerText = "Tabs to reduce\n";
+    tabsSlider.value = "" + plan.tabReductionGoal;
+    tabsElement.innerText = "Tabs / Day: ";
     tabsElement.appendChild(tabsSlider);
     element.appendChild(tabsElement);
 
@@ -27,10 +30,8 @@ export function renderPlanEditor(element: HTMLElement) {
     var timeElement = document.createElement("div");
     var timeSlider = <HTMLInputElement>document.createElement("input");
     timeSlider.setAttribute("type", "range");
-    //timeSlider.value = "" + plan.minutesReductionGoal;
-    timeSlider.value = "22";
-    console.log(timeSlider.value);
-    timeElement.innerText = "\nTime to reduce\n";
+    timeSlider.value = "" + plan.minutesReductionGoal;
+    timeElement.innerText = "Time / Day: ";
     timeElement.appendChild(timeSlider);
     element.appendChild(timeElement);
 
@@ -40,21 +41,21 @@ export function renderPlanEditor(element: HTMLElement) {
     var whyReason = document.createElement("div");
     var whyReasonInput = <HTMLInputElement>document.createElement("input");
     whyReasonInput.value = plan.whyReason;
-    whyReason.innerText = "\nWhy do you want to quit?\n";
+    whyReason.innerText = "\nWhy do you want to use these sites less?\n";
     whyReason.appendChild(whyReasonInput);
     element.appendChild(whyReason);
 
     var badEffects = document.createElement("div");
     var badEffectsInput = <HTMLInputElement>document.createElement("input");
     badEffectsInput.value = plan.badEffects;
-    badEffects.innerText = "\nBad Effects?\n";
+    badEffects.innerText = "\nWhat are the negative effects of using these sites too much?\n";
     badEffects.appendChild(badEffectsInput);
     element.appendChild(badEffects);
 
     var resistUrge = document.createElement("div");
     var resistUrgeInput = <HTMLInputElement>document.createElement("input");
     resistUrgeInput.value = plan.resistUrgePlan;
-    resistUrge.innerText = "\nYour plan to resist urge?\n";
+    resistUrge.innerText = "\nWhen I encounter an urge, I will do these things to help me resist:\n";
     resistUrge.appendChild(resistUrgeInput);
     element.appendChild(resistUrge);
 
