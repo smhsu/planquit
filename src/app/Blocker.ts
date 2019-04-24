@@ -1,5 +1,6 @@
 import * as parseUrl from 'url-parse';
 import { searchBlacklist } from "./siteBlacklist";
+import { isBlockingActive } from './blockTimes';
 
 export class Blocker {
     startBlocking() {
@@ -8,7 +9,7 @@ export class Blocker {
     }
 
     handleTabVisitedSite(tabId?: number, url?: string) {
-        if (tabId === undefined || !url) {
+        if (tabId === undefined || !url || !isBlockingActive()) {
             return;
         }
 

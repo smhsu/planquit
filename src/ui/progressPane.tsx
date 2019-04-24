@@ -27,7 +27,7 @@ function getStatsForTimeRange(timeRange: OpenInterval) {
     };
 }
 
-function formatTime(milliseconds: number) {
+function formatDuration(milliseconds: number) {
     const seconds = milliseconds / 1000;
     if (seconds < 90) {
         return `${Math.round(seconds)}s`;
@@ -49,49 +49,61 @@ function ProgressPane(props: {}) {
     const statsCol1 = getStatsForTimeRange(timeRange14DaysAgo);
     const statsCol2 = getStatsForTimeRange(timeRange7DaysAgo);
 
-    return <table className="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>14 to 7 days ago</th>
-                <th>Past 7 days</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <RowHeader
-                    content="Time spent"
-                    explanation="Time spent on blacklist sites"
-                />
-                <td>{formatTime(statsCol1.timeSpent)}</td>
-                <td>{formatTime(statsCol2.timeSpent)}</td>
-            </tr>
-            <tr>
-                <RowHeader
-                    content="Number of navigations"
-                    explanation="Number of times you opened or switched to tabs displaying blacklist sites"
-                />
-                <td>{statsCol1.contextSwitches}</td>
-                <td>{statsCol2.contextSwitches}</td>
-            </tr>
-            <tr>
-                <RowHeader
-                    content="Urges resisted"
-                    explanation="Number of times you avoided continuing after seeing the block screen"
-                />
-                <td>{statsCol1.urgesResisted}</td>
-                <td>{statsCol2.urgesResisted}</td>
-            </tr>
-            <tr>
-                <RowHeader
-                    content="Blocks ignored"
-                    explanation="Number of times you ignored the block screen and continued"
-                />
-                <td>{statsCol1.blocksIgnored.length}</td>
-                <td>{statsCol2.blocksIgnored.length}</td>
-            </tr>
-        </tbody>
-    </table>;
+    const col1Reasons = statsCol1.blocksIgnored.map(entry => entry.reason);
+    const col2Reasons = statsCol2.blocksIgnored.map(entry => entry.reason);
+    const ignoreReasons = col1Reasons.concat(col2Reasons);
+
+    return <div>
+        <table className="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>14 to 7 days ago</th>
+                    <th>Past 7 days</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <RowHeader
+                        content="Time spent"
+                        explanation="Time spent on blacklist sites"
+                    />
+                    <td>{formatDuration(statsCol1.timeSpent)}</td>
+                    <td>{formatDuration(statsCol2.timeSpent)}</td>
+                </tr>
+                <tr>
+                    <RowHeader
+                        content="Number of navigations"
+                        explanation="Number of times you opened or switched to tabs displaying blacklist sites"
+                    />
+                    <td>{statsCol1.contextSwitches}</td>
+                    <td>{statsCol2.contextSwitches}</td>
+                </tr>
+                <tr>
+                    <RowHeader
+                        content="Urges resisted"
+                        explanation="Number of times you avoided continuing after seeing the block screen"
+                    />
+                    <td>{statsCol1.urgesResisted}</td>
+                    <td>{statsCol2.urgesResisted}</td>
+                </tr>
+                <tr>
+                    <RowHeader
+                        content="Blocks ignored"
+                        explanation="Number of times you ignored the block screen and continued"
+                    />
+                    <td>{statsCol1.blocksIgnored.length}</td>
+                    <td>{statsCol2.blocksIgnored.length}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <p>Reasons you ignored blocks in the past 14 days (most recent first):</p>
+            <ul style={{color: "red"}}>
+                {ignoreReasons.reverse().map((reason, i) => <li key={i}>"{reason}"</li>)}
+            </ul>
+        </div>
+    </div>;
 }
 
 let nextTooltipId = 0;
