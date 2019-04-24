@@ -1,4 +1,25 @@
 body {
-    min-width: 400px;
-    min-height: 400px;
+    min-width: 220px;
+    min-height: 220px;
+    margin-bottom: 10px;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.button-row {
+    text-align: center;
+}
+
+.main-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 2px;
+}
+
+.main-button i {
+    margin: 10px;
 }

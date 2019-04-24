@@ -1,4 +1,16 @@
 import * as $ from "jquery";
+import * as moment from "moment";
+
+const TIME_FORMAT = "hh:mm a";
+
+function parseTime(time: string) {
+    const parsed = moment.utc(this.startTime, TIME_FORMAT);
+    return {
+        hours: parsed.hours(),
+        minutes: parsed.minutes()
+    };
+}
+
 /**
  * Renders the config screen. 
  * 

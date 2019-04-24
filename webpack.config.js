@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         background: './src/app/background.ts',
         popup: './src/ui/popup.ts',
-        blocked: './src/app/blocked.ts'
+        blockPage: './src/ui/blockPage.ts'
     },
 
     output: {

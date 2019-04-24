@@ -18,7 +18,7 @@ export class Blocker {
             console.log(`Searching blacklist for "${urlToSearch}"...`);
             const blacklistIndex = searchBlacklist(urlToSearch, true, false);
             if (blacklistIndex !== -1) {
-                const blockPage = chrome.runtime.getURL("blocked.html") + "?domain=" + encodeURIComponent(url);
+                const blockPage = chrome.runtime.getURL("blockPage.html") + "?domain=" + encodeURIComponent(url);
                 chrome.tabs.update(tabId, {url: blockPage});
             }
         }
