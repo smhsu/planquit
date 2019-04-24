@@ -61,7 +61,7 @@ function ProgressPane(props: {}) {
             <tr>
                 <RowHeader
                     content="Time spent"
-                    explanation="Time spent on blacklist sites while active discouragement was active"
+                    explanation="Time spent on blacklist sites"
                 />
                 <td>{formatTime(statsCol1.timeSpent)}</td>
                 <td>{formatTime(statsCol2.timeSpent)}</td>
@@ -69,8 +69,7 @@ function ProgressPane(props: {}) {
             <tr>
                 <RowHeader
                     content="Number of navigations"
-                    explanation="Number of times you opened or switched to tabs displaying blacklist sites while
-                        active discouragemeent was active"
+                    explanation="Number of times you opened or switched to tabs displaying blacklist sites"
                 />
                 <td>{statsCol1.contextSwitches}</td>
                 <td>{statsCol2.contextSwitches}</td>
@@ -86,7 +85,7 @@ function ProgressPane(props: {}) {
             <tr>
                 <RowHeader
                     content="Blocks ignored"
-                    explanation="Number of times you ignored the block screen and continued to a blacklist site"
+                    explanation="Number of times you ignored the block screen and continued"
                 />
                 <td>{statsCol1.blocksIgnored.length}</td>
                 <td>{statsCol2.blocksIgnored.length}</td>
@@ -109,6 +108,4 @@ function RowHeader(props: {content: string, explanation?: string}) {
     </td>;
 }
 
-export function renderProgressPane(element: HTMLElement) {
-    ReactDOM.render(<ProgressPane />, element);
-}
+ReactDOM.render(<ProgressPane />, document.getElementById("root"));

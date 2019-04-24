@@ -6,10 +6,10 @@ module.exports = {
 
     entry: {
         background: './src/app/background.ts',
-        popup: './src/ui/popup.ts',
         blockPage: './src/ui/blockPage.ts',
         siteSelector: './src/ui/siteSelector.ts',
-        planEditor: './src/ui/planEditor.ts'
+        planEditor: './src/ui/planEditor.ts',
+        progressPane: './src/ui/progressPane.tsx'
     },
 
     output: {
