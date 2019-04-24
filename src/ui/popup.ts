@@ -7,6 +7,15 @@ import { renderProgressPane } from "./progressPane";
 import { renderConfigScreen } from "./configScreen";
 
 import "../styles/popup.css";
+
+
+$("#blacklist-button").click(() => {
+    document.body = document.createElement("body");
+    renderSiteSelector(document.body);
+});
+
+$("progress-button")
+
 /*
 const blacklistButton = $("<button class='main-button'><p>Edit site blacklist</button>");
 

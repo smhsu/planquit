@@ -1,3 +1,4 @@
+import * as $ from "jquery";
 import { getBlacklist, addSiteToBlacklist, removeSiteFromBlacklist } from "../app/siteBlacklist";
 
 /**
@@ -5,50 +6,57 @@ import { getBlacklist, addSiteToBlacklist, removeSiteFromBlacklist } from "../ap
  * 
  * @param {HTMLElement} element - the element to append the site selector UI to
  */
-export function renderSiteSelector(element: HTMLElement) {
-    // read stuff from localStorage SITES_TO_TRACK
-    // use the information to render a list of sites currently blocked
-    // append another <input type="text">
-    // etc
-    
-    // addSiteToBlacklist("my site");
-    element.innerHTML = "<br><strong>Enter the sites you want to visit less. </strong><br><br> We will track your usage for these sites. <br><br>";
-    var blacklistSites = getBlacklist();
-    
+export function renderSiteSelector(element: HTMLElement | null) {
+    if (!element) {
+        return;
+    }
+
+    const jqueryEle = $(element);
+    jqueryEle.children().remove();
+
+    const blacklistSites = getBlacklist();
     for (let site of blacklistSites) {
+        const item = $("<div class='blacklist-row'></div>");
+        item.text(site + " ");
 
-        var button = <HTMLButtonElement>document.createElement('button');
-        button.textContent = "Remove";
-        var siteString = <HTMLElement>document.createElement("text");
-        siteString.setAttribute("class", "url");
-        siteString.innerText = "" + site + "\n\n";
-
-        button.onclick = function () {
+        const removeButton = $("<i class='fas fa-times-circle'></i>");
+        removeButton.click(() => {
             removeSiteFromBlacklist(site);
             renderSiteSelector(element);
-            //return;
-        }
+        });
+        item.append(removeButton);
 
-        element.appendChild(button);
-        element.appendChild(siteString);
+        jqueryEle.append(item);
     }
-
-    var inputString = <HTMLInputElement>document.createElement("input");
-    var button = <HTMLButtonElement>document.createElement("button");
-    button.textContent = "Add Site";
-    button.onclick = function() {
-        addSiteToBlacklist(inputString.value);
-        renderSiteSelector(element);
-    }
-
-    element.appendChild(button);
-    element.appendChild(inputString);
-
-
-    // render BlackListSites
-    
-
-    //removeSiteFromBlacklist("my site")
-
-    //element.innerText = 'test';
 }
+
+renderSiteSelector(document.getElementById("blacklist"));
+
+function handleAddSitePressed() {
+    const input = $("#site-input");
+    const siteToAdd = input.val() as string;
+    if (!siteToAdd) {
+        return;
+    }
+    addSiteToBlacklist(siteToAdd);
+    input.val("");
+    renderSiteSelector(document.getElementById("blacklist"));
+}
+
+// Disable the button if no input
+$("#site-input").on("input", event => {
+    if ((event.target as HTMLInputElement).value.length > 0) {
+        $("#add-site-button").prop("disabled", false);
+    } else {
+        $("#add-site-button").prop("disabled", true);
+    }
+});
+
+$("#site-input").keyup(event => {
+    if (event.keyCode === 13) { // Enter
+        handleAddSitePressed();
+    }
+});
+
+// Callback for the add button
+$("#add-site-button").click(handleAddSitePressed);
