@@ -1,22 +1,27 @@
-import "../styles/popup.css";
+import * as $ from "jquery";
+
 import { SiteLog } from "../app/SiteLog";
 import { renderSiteSelector } from "./siteSelector";
 import { renderPlanEditor } from "./planEditor";
 import { renderProgressPane } from "./progressPane";
 import { renderConfigScreen } from "./configScreen";
 
-const log = new SiteLog();
+import "../styles/popup.css";
+/*
+const blacklistButton = $("<button class='main-button'><p>Edit site blacklist</button>");
+
+document.body.append();
 
 document.body.innerHTML = "<strong>Edit your sites and set your plan<br>";
 
 var editSitesButton = <HTMLButtonElement>document.createElement("button");
-editSitesButton.textContent = "Edit Sites";
+editSitesButton.textContent = "Edit site blacklist";
 document.body.append(editSitesButton);
 var editPlanButton = <HTMLButtonElement>document.createElement("button");
-editPlanButton.textContent = "Edit Plan";
+editPlanButton.textContent = "Edit plan";
 document.body.append(editPlanButton);
 var editConfigButton = <HTMLButtonElement>document.createElement("button");
-editConfigButton.textContent = "Edit Config";
+editConfigButton.textContent = "Edit block times";
 document.body.append(editConfigButton);
 
 var child = document.createElement("div");
@@ -32,3 +37,4 @@ editPlanButton.onclick = function() {
 editConfigButton.onclick = function() {
     renderConfigScreen(child);
 }
+*/
