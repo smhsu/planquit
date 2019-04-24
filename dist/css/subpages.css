@@ -12,3 +12,7 @@ body {
 .plan-item {
     margin-bottom: 20px;
 }
+
+.block-mode-item {
+    display: block;
+}
