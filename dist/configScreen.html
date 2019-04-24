@@ -10,6 +10,7 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="subpages.css">
 </head>
 
 <body>
@@ -24,19 +25,18 @@
         </label>
         <label for="scheduled">
             <input type="radio" name="config" value="scheduled" id="scheduled" onselect = "showTime()">Scheduled<br>
-            <div>
+        </label><br>
+        <div id = "days">
                 <input type="time" id = "fromTime">
                 <input type="time" id = "toTime">
+                <input type="checkbox" name = "day" id = "Mon">Mon<br>
+                <input type="checkbox" name = "day" id = "Tue">Tue<br>
+                <input type="checkbox" name = "day" id = "Wed">Wed<br>
+                <input type="checkbox" name = "day" id = "Thur">Thursday<br>
+                <input type="checkbox" name = "day" id = "Friday">Friday<br>
+                <input type="checkbox" name = "day" id = "Sat">Sat<br>
+                <input type="checkbox" name = "day" id = "Sun">Sun<br>
             </div>
-        </label>
     </div>
-    <script>
-        function showTime() {
-            var fromTime = document.getElementById("fromTime");
-            var toTime = document.getElementById("toTime");
-            fromTime.hidden = true;
-            toTime.hidden = true;
-        }
-    </script>
+    <script src = "js/configScreen.js"></script>
 </body>
-</html>

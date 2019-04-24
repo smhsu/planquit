@@ -9,7 +9,8 @@ module.exports = {
         blockPage: './src/ui/blockPage.ts',
         siteSelector: './src/ui/siteSelector.ts',
         planEditor: './src/ui/planEditor.ts',
-        progressPane: './src/ui/progressPane.tsx'
+        progressPane: './src/ui/progressPane.tsx',
+        configScreen: './src/ui/configScreen.ts'
     },
 
     output: {
