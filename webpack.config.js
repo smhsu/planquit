@@ -8,7 +8,8 @@ module.exports = {
         background: './src/app/background.ts',
         popup: './src/ui/popup.ts',
         blockPage: './src/ui/blockPage.ts',
-        siteSelector: './src/ui/siteSelector.ts'
+        siteSelector: './src/ui/siteSelector.ts',
+        planEditor: './src/ui/planEditor.ts'
     },
 
     output: {
