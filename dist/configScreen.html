@@ -14,29 +14,26 @@
 </head>
 
 <body>
-    <br><strong>When do you want active discouragement?</strong>
-    <br>We will put up a warning screen when you visit a site that you want to visit less. <br><br>
+    <b>When do you want active discouragement?</b>
+    <p>We will put up a warning screen when you visit a site on your blacklist.</p>
     <div>
-        <label for="always">
-            <input type="radio" name="config" value="always" id="always">Always<br>
+        <label for="always" class="block-mode-item">
+            <input type="radio" name="block-mode" value="always" id="always"> Always
         </label>
-        <label for="never">
-            <input type="radio" name="config" value="never" id="never">Never<br>
+        <label for="never" class="block-mode-item">
+            <input type="radio" name="block-mode" value="never" id="never"> Never
         </label>
-        <label for="scheduled">
-            <input type="radio" name="config" value="scheduled" id="scheduled" onselect = "showTime()">Scheduled<br>
-        </label><br>
-        <div id = "days">
-                <input type="time" id = "fromTime">
-                <input type="time" id = "toTime">
-                <input type="checkbox" name = "day" id = "Mon">Mon<br>
-                <input type="checkbox" name = "day" id = "Tue">Tue<br>
-                <input type="checkbox" name = "day" id = "Wed">Wed<br>
-                <input type="checkbox" name = "day" id = "Thur">Thursday<br>
-                <input type="checkbox" name = "day" id = "Friday">Friday<br>
-                <input type="checkbox" name = "day" id = "Sat">Sat<br>
-                <input type="checkbox" name = "day" id = "Sun">Sun<br>
-            </div>
+        <label for="scheduled" class="block-mode-item">
+            <input type="radio" name="block-mode" value="scheduled" id="scheduled"> Scheduled
+        </label>
+        <div id="scheduler">
+            <input type="time" id="from-time" /> to 
+            <input type="time" id="to-time" />
+        </div>
     </div>
-    <script src = "js/configScreen.js"></script>
+    <p id="messages"></p>
+    <hr>
+    <button class="btn btn-primary" id="save">Save</button>
+    <a href="popup.html" class="btn btn-light">Cancel</a>
+    <script src="js/configScreen.js"></script>
 </body>
