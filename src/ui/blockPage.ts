@@ -29,14 +29,14 @@ $("#blocked-site").text(blockedHostPlusPath);
 
 // Fill in the block reason
 const plan = getPlan();
-const whyReasons = plan.whyReason.trim().split("\n");
-const badEffects = plan.badEffects.trim().split("\n");
+const whyReasons = plan.whyReason.trim() ? plan.whyReason.trim().split("\n") : [];
+const badEffects = plan.badEffects.trim() ? plan.badEffects.trim().split("\n") : [];
 const reasons = whyReasons.concat(badEffects);
-$(".stop-reason").text(getRandomElement(reasons));
+$(".stop-reason").text(getRandomElement(reasons) || "(no plan set)");
 
 // Fill in the resist advice
 const advices = plan.resistUrgePlan.trim().split("\n");
-$(".resist-advice").text(getRandomElement(advices));
+$(".resist-advice").text(getRandomElement(advices) || "(no plan set)");
 
 // Bind event listener to reason textarea
 $("#ignore-reason").on("input", handleReasonChanged);

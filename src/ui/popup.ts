@@ -2,7 +2,6 @@ import * as $ from "jquery";
 
 import { SiteLog } from "../app/SiteLog";
 import { renderSiteSelector } from "./siteSelector";
-import { renderPlanEditor } from "./planEditor";
 import { renderProgressPane } from "./progressPane";
 import { renderConfigScreen } from "./configScreen";
 

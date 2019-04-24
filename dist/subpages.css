@@ -2,8 +2,13 @@ body {
     min-width: 400px;
     min-height: 200px;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 .blacklist-row {
     font-family: monospace;
+}
+
+.plan-item {
+    margin-bottom: 20px;
 }

@@ -9,6 +9,7 @@ module.exports = {
         popup: './src/ui/popup.ts',
         blockPage: './src/ui/blockPage.ts',
         siteSelector: './src/ui/siteSelector.ts',
+        planEditor: './src/ui/planEditor.ts',
         configScreen: './src/ui/configScreen.ts'
     },
 
