@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PlanQuit</title>
+    <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <br><strong>When do you want active discouragement?</strong>
+    <br>We will put up a warning screen when you visit a site that you want to visit less. <br><br>
+    <div>
+        <label for="always">
+            <input type="radio" name="config" value="always" id="always">Always<br>
+        </label>
+        <label for="never">
+            <input type="radio" name="config" value="never" id="never">Never<br>
+        </label>
+        <label for="scheduled">
+            <input type="radio" name="config" value="scheduled" id="scheduled" onselect = "showTime()">Scheduled<br>
+            <div>
+                <input type="time" id = "fromTime">
+                <input type="time" id = "toTime">
+            </div>
+        </label>
+    </div>
+    <script>
+        function showTime() {
+            var fromTime = document.getElementById("fromTime");
+            var toTime = document.getElementById("toTime");
+            fromTime.hidden = true;
+            toTime.hidden = true;
+        }
+    </script>
+</body>
+</html>
