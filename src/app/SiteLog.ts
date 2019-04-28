@@ -1,8 +1,9 @@
 import * as parseUrl from 'url-parse';
 import { searchBlacklist } from './siteBlacklist';
+import { isBlockingActive } from './blockTimes';
 
 const LOG_KEY = "sites";
-const MIN_VISIT_LENGTH_TO_LOG = 2000; // Milliseconds
+const MIN_VISIT_LENGTH_TO_LOG = 1000; // Milliseconds
 const MAX_VISIT_LENGTH_TO_LOG = 5 // Minutes
 
 export interface SiteVisit {
@@ -25,20 +26,22 @@ export class SiteLog {
         this._currentSite = "";
     }
 
+    /**
+     * Gets a log of when blacklist sites were visited
+     */
     getData(): SiteVisit[] {
         const data = window.localStorage.getItem(LOG_KEY);
         return data ? JSON.parse(data) : [];
-        /*
-        return new Promise<SiteVisit[]>((resolve, reject) => {
-            chrome.storage.local.get( LOG_KEY, data => resolve(data[LOG_KEY] || []) );
-        });
-        */
     }
 
+    /**
+     * Adds a site visit to the log, but only if it is on the blacklist and we are actively blocking sites.
+     */
     addItemToLog() {
         if (!this._currentSite ||
             this._startTime === Number.NEGATIVE_INFINITY ||
-            searchBlacklist(this._currentSite, true) === -1 // Site not on the blacklist
+            !isBlockingActive() ||
+            searchBlacklist(this._currentSite, true) === -1 // Site is not on the blacklist
         ) {
             return;
         }
@@ -50,14 +53,8 @@ export class SiteLog {
         }
 
         const log = this.getData();
-        const lastItem = log[log.length - 1];
         const newItem: SiteVisit = {domain: this._currentSite, startTime: this._startTime, endTime: endTime};
-
-        if (lastItem && lastItem.domain === newItem.domain) {
-            lastItem.endTime = newItem.endTime;
-        } else {
-            log.push(newItem);
-        }
+        log.push(newItem);
         window.localStorage.setItem(LOG_KEY, JSON.stringify(log));
     }
 
